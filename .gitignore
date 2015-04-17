@@ -1,0 +1,7 @@
+# proprietary #
+###############
+/orch-proprietary/*
+/ckeditor/plugins/aspspellchecker/*
+# server code #
+###############
+/orch-custom_plugins_server/*
