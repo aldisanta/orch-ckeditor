@@ -137,7 +137,8 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker','/scripts/orch-ckeditor/ckeditor
 			}
 
 		],
-	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document,date,time,aspspellchecker,audio,video,fotf'
+	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document' + 
+								  ',date,time,aspspellchecker,audio,video,fotf'
 	}
 
  	/* CKEDITOR DATA-API
@@ -151,6 +152,17 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker','/scripts/orch-ckeditor/ckeditor
 			$ckedit.prop('id', id + num);
 			$ckedit.ckedit();
 			num++;
+		});
+
+		//auto update instance since 
+		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement not working
+		CKEDITOR.on('instanceReady', function(){
+		   $.each( CKEDITOR.instances, function(instance) {
+		    CKEDITOR.instances[instance].on("change", function(e) {
+		        for ( instance in CKEDITOR.instances )
+		        CKEDITOR.instances[instance].updateElement();
+		    });
+		   });
 		});
 
 	});
