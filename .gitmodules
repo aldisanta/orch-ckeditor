@@ -1,0 +1,4 @@
+[submodule "ckeditor"]
+	path = ckeditor
+	url = https://github.com/aldisanta/ckeditor-releases.git
+	branch = orch
