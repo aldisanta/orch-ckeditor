@@ -1,10 +1,17 @@
-CKEDITOR.plugins.addExternal( 'document','/scripts/orch-ckeditor/orch-custom_plugins/document/');
-CKEDITOR.plugins.addExternal( 'date','/scripts/orch-ckeditor/orch-custom_plugins/date/');
-CKEDITOR.plugins.addExternal( 'time','/scripts/orch-ckeditor/orch-custom_plugins/time/');
-CKEDITOR.plugins.addExternal( 'fotf','/scripts/orch-ckeditor/orch-custom_plugins/fotf/');
-CKEDITOR.plugins.addExternal( 'audio','/scripts/orch-ckeditor/orch-custom_plugins/audio/');
-CKEDITOR.plugins.addExternal( 'video','/scripts/orch-ckeditor/orch-custom_plugins/video/');
-CKEDITOR.plugins.addExternal( 'aspspellchecker','/scripts/orch-ckeditor/ckeditor/plugins/aspspellchecker/');
+CKEDITOR.plugins.addExternal( 'document'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/document/');
+CKEDITOR.plugins.addExternal( 'date'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/date/');
+CKEDITOR.plugins.addExternal( 'time'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/time/');
+CKEDITOR.plugins.addExternal( 'fotf'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/fotf/');
+CKEDITOR.plugins.addExternal( 'audio'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/audio/');
+CKEDITOR.plugins.addExternal( 'video'
+									,'/scripts/orch-ckeditor/orch-custom_plugins/video/');
+CKEDITOR.plugins.addExternal( 'aspspellchecker'
+									,'/scripts/orch-ckeditor/ckeditor/plugins/aspspellchecker/');
 
 !function ($) {
 	var ckedit = function (element, options) {
@@ -95,7 +102,8 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker','/scripts/orch-ckeditor/ckeditor
 			}
 
 		],
-	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document,date,time,aspspellchecker'
+	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document,date' +
+	  							',time,aspspellchecker'
 	}
 
 	$.fn.ckedit.basic_page = {
@@ -155,7 +163,8 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker','/scripts/orch-ckeditor/ckeditor
 		});
 
 		//auto update instance since 
-		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement not working
+		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement 
+		//not working
 		CKEDITOR.on('instanceReady', function(){
 		   $.each( CKEDITOR.instances, function(instance) {
 		    CKEDITOR.instances[instance].on("change", function(e) {
