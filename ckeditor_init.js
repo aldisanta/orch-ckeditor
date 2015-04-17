@@ -156,6 +156,10 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 		var id = "elm";
 		var num = 1;
 		$('[data-editor="ckeditor"]').each(function () {
+			//disabled ckeditor when Delete Button found
+			if ($('input[value=Delete]').length) {
+				$(this).prop('disabled', true);
+			}
 			var $ckedit = $(this);
 			$ckedit.prop('id', id + num);
 			$ckedit.ckedit();
