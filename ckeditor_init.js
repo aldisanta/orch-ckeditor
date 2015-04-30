@@ -166,6 +166,14 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			$ckedit.ckedit();
 			num++;
 		});
+		
+		$('.ckeditor-merge-field').click(function(event) {
+			event.preventDefault();
+			var merge_field = $(this).children('td').first().html();
+			var elm = $(this).data('ckinstance');
+	    //somehow insertHtml is not working
+	    CKEDITOR.instances[elm].insertText(merge_field);
+		});
 
 		//auto update instance since 
 		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement 
