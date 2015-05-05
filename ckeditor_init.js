@@ -61,7 +61,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 		],
 		extraPlugins: '',
 		removeButtons: '',
-		width: '95%'
+		width: '625px'
 	}
 	
 	//extended functionality
