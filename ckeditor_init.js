@@ -180,7 +180,9 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 		//not working
 		CKEDITOR.on('instanceReady', function(){
 		   $.each( CKEDITOR.instances, function(instance) {
-		    CKEDITOR.instances[instance].on("change", function(e) {
+		    //change change event to key event, because change event not fired on
+		    //view source mode
+		    CKEDITOR.instances[instance].on("key", function(e) {
 		        for ( instance in CKEDITOR.instances )
 		        CKEDITOR.instances[instance].updateElement();
 		    });
