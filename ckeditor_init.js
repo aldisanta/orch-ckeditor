@@ -188,9 +188,16 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 							$('.cke_source').keyup(function(event) {
 								CKEDITOR.instances[instance].updateElement();
 							});
+							$('.cke_source').change(function(event) {
+								CKEDITOR.instances[instance].updateElement();
+							});
 						}
 				});
 				
+				CKEDITOR.instances[instance].on("change", function(e) {
+						for ( instance in CKEDITOR.instances )
+						CKEDITOR.instances[instance].updateElement();
+				});
 				CKEDITOR.instances[instance].on("key", function(e) {
 						for ( instance in CKEDITOR.instances )
 						CKEDITOR.instances[instance].updateElement();
