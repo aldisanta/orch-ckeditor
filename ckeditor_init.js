@@ -186,6 +186,10 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 		        for ( instance in CKEDITOR.instances )
 		        CKEDITOR.instances[instance].updateElement();
 		    });
+		    CKEDITOR.instances[instance].on("change", function(e) {
+		        for ( instance in CKEDITOR.instances )
+		        CKEDITOR.instances[instance].updateElement();
+		    });
 		   });
 		});
 
