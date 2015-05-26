@@ -66,7 +66,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 	
 	//extended functionality
 	$.fn.ckedit.basic = {
-	  toolbar:
+		toolbar:
 		[
 			{ 
 				name: 'theme_advanced_buttons1', 
@@ -103,12 +103,12 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			}
 
 		],
-	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document,date' +
-	  							',time,aspspellchecker'
+		extraPlugins: 'newpage,justify,find,preview,colorbutton,document,date' +
+									',time,aspspellchecker'
 	}
 
 	$.fn.ckedit.basic_page = {
-	  toolbar:
+		toolbar:
 		[
 			{ 
 				name: 'theme_advanced_buttons1', 
@@ -146,11 +146,11 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			}
 
 		],
-	  extraPlugins: 'newpage,justify,find,preview,colorbutton,document' + 
-								  ',date,time,aspspellchecker,audio,video,fotf'
+		extraPlugins: 'newpage,justify,find,preview,colorbutton,document' + 
+									',date,time,aspspellchecker,audio,video,fotf'
 	}
 
- 	/* CKEDITOR DATA-API
+	/* CKEDITOR DATA-API
 	* =============== */
 	
 	$(window).on('load', function () {
@@ -171,26 +171,31 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			event.preventDefault();
 			var merge_field = $(this).children('td').first().html();
 			var elm = $(this).data('ckinstance');
-	    //somehow insertHtml is not working
-	    CKEDITOR.instances[elm].insertText(merge_field);
+			//somehow insertHtml is not working
+			CKEDITOR.instances[elm].insertText(merge_field);
 		});
 
 		//auto update instance since 
 		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement 
 		//not working
 		CKEDITOR.on('instanceReady', function(){
-		   $.each( CKEDITOR.instances, function(instance) {
-		    //change change event to key event, because change event not fired on
-		    //view source mode
-		    CKEDITOR.instances[instance].on("key", function(e) {
-		        for ( instance in CKEDITOR.instances )
-		        CKEDITOR.instances[instance].updateElement();
-		    });
-		    CKEDITOR.instances[instance].on("change", function(e) {
-		        for ( instance in CKEDITOR.instances )
-		        CKEDITOR.instances[instance].updateElement();
-		    });
-		   });
+			 $.each( CKEDITOR.instances, function(instance) {
+				
+				//key event only supported on wysiwyg mode, on source using direct keyup
+				//event
+				CKEDITOR.instances[instance].on('mode', function(e){
+						if(e.editor.mode == 'source') {
+							$('.cke_source').keyup(function(event) {
+								CKEDITOR.instances[instance].updateElement();
+							});
+						}
+				});
+				
+				CKEDITOR.instances[instance].on("key", function(e) {
+						for ( instance in CKEDITOR.instances )
+						CKEDITOR.instances[instance].updateElement();
+				});
+			 });
 		});
 
 	});
