@@ -152,11 +152,10 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 
 	/* CKEDITOR DATA-API
 	* =============== */
-	
-	$(window).on('load', function () {
+	$.fn.ckedit.initialization = function() {
 		var id = "elm";
 		var num = 1;
-		$('[data-editor="ckeditor"]').each(function () {
+		$('[data-editor="ckeditor"]:visible').each(function () {
 			//disabled ckeditor when Delete Button found
 			if ($('input[value=Delete]').length) {
 				$(this).prop('disabled', true);
@@ -204,6 +203,21 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 				});
 			 });
 		});
-
+	}
+	
+	$(window).on('load', function () {
+		$.fn.ckedit.initialization();
 	});
+	
+	if ($('#ckeditor-flag').length > 0) {
+		$('#ckeditor-flag').change(function(event) {
+			if ($(this).val() == 'load-ck') {
+				$.fn.ckedit.initialization();
+			}
+			else if ($(this).val() == 'destroy-ck') {
+				$.each( CKEDITOR.instances, function(instance) {
+				});
+			}
+		});
+	}
 }(window.jQuery);
