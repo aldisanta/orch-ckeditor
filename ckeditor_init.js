@@ -20,7 +20,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 
 	//definition
 	var old = $.fn.ckedit
-	
+
 	$.fn.ckedit = function (lazy) {
 		return this.each(function () {
 			var $this = $(this)
@@ -43,54 +43,54 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 		$.fn.ckedit = old;
 		return this;
 	}
-	
+
 	//default functionality
 	$.fn.ckedit.defaults = {
 		toolbar:
 		[
-			{ 
-				name: 'theme_advanced_buttons1', 
+			{
+				name: 'theme_advanced_buttons1',
 				items: [
 					'Bold','Italic','Underline','Strike','-',
 					'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-',
 					'Undo','Redo','-',
 					'RemoveFormat','-',
 					'Link','Unlink'
-				] 
+				]
 			}
 		],
 		extraPlugins: '',
 		removeButtons: '',
 		width: '625px'
 	}
-	
+
 	//extended functionality
 	$.fn.ckedit.basic = {
 		toolbar:
 		[
-			{ 
-				name: 'theme_advanced_buttons1', 
+			{
+				name: 'theme_advanced_buttons1',
 				items: [
 					'NewPage','-',
 					'Bold','Italic','Underline','Strike','-',
 					'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock',
 					'Format','-','Image','document'
-				] 
-			},		
+				]
+			},
 			'/',
-			{ 
-				name: 'theme_advanced_buttons2', 
+			{
+				name: 'theme_advanced_buttons2',
 				items: [
-					'Cut','Copy','Paste','PasteText','PasteFromWord','-', 
+					'Cut','Copy','Paste','PasteText','PasteFromWord','-',
 					'Find','Replace','-','BulletedList','NumberedList','-',
 					'Outdent','Indent','Blockquote','-',
 					'Undo','Redo','-',
 					'Link','Unlink','Anchor','About','Source'
-				] 
+				]
 			},
 			'/',
-			{ 
-				name: 'theme_advanced_buttons3', 
+			{
+				name: 'theme_advanced_buttons3',
 				items: [
 					'date','time','Preview','-',
 					'TextColor','BGColor',
@@ -99,7 +99,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 					'Subscript','Superscript','-',
 					'SpecialChar','-',
 					'Maximize','aspspellchecker',',uiColor'
-				] 
+				]
 			}
 
 		],
@@ -110,30 +110,30 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 	$.fn.ckedit.basic_page = {
 		toolbar:
 		[
-			{ 
-				name: 'theme_advanced_buttons1', 
+			{
+				name: 'theme_advanced_buttons1',
 				items: [
 					'NewPage','-',
 					'Bold','Italic','Underline','Strike','-',
 					'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','fotf',
 					'Format','-','Image','audio','document','video'
-				] 
-			},	
+				]
+			},
 			'/',
-			{ 
-				name: 'theme_advanced_buttons3', 
+			{
+				name: 'theme_advanced_buttons3',
 				items: [
-					'Cut','Copy','Paste','PasteText','PasteFromWord','-', 
+					'Cut','Copy','Paste','PasteText','PasteFromWord','-',
 					'Find','Replace','-','Blockquote','BulletedList','NumberedList','-',
 					'Outdent','Indent','-',
 					'Undo','Redo','-',
 					'Link','Unlink','Anchor','About','Source'
-					
-				] 
+
+				]
 			},
 			'/',
-			{ 
-				name: 'theme_advanced_buttons4', 
+			{
+				name: 'theme_advanced_buttons4',
 				items: [
 					'date','time','Preview','-',
 					'TextColor','BGColor',
@@ -142,11 +142,11 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 					'Subscript','Superscript','-',
 					'SpecialChar','-',
 					'Maximize','aspspellchecker',',uiColor'
-				] 
+				]
 			}
 
 		],
-		extraPlugins: 'newpage,justify,find,preview,colorbutton,document' + 
+		extraPlugins: 'newpage,justify,find,preview,colorbutton,document' +
 									',date,time,aspspellchecker,audio,video,fotf'
 	}
 
@@ -165,7 +165,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			$ckedit.ckedit();
 			num++;
 		});
-		
+
 		$('.ckeditor-merge-field').click(function(event) {
 			event.preventDefault();
 			var merge_field = $(this).children('td').first().html();
@@ -174,12 +174,12 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			CKEDITOR.instances[elm].insertText(merge_field);
 		});
 
-		//auto update instance since 
-		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement 
+		//auto update instance since
+		//http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-autoUpdateElement
 		//not working
 		CKEDITOR.on('instanceReady', function(){
 			 $.each( CKEDITOR.instances, function(instance) {
-				
+
 				//key event only supported on wysiwyg mode, on source using direct keyup
 				//event
 				CKEDITOR.instances[instance].on('mode', function(e){
@@ -192,7 +192,7 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 							});
 						}
 				});
-				
+
 				CKEDITOR.instances[instance].on("change", function(e) {
 						for ( instance in CKEDITOR.instances )
 						CKEDITOR.instances[instance].updateElement();
@@ -204,11 +204,11 @@ CKEDITOR.plugins.addExternal( 'aspspellchecker'
 			 });
 		});
 	}
-	
+
 	$(window).on('load', function () {
 		$.fn.ckedit.initialization();
 	});
-	
+
 	if ($('#ckeditor-flag').length > 0) {
 		$('#ckeditor-flag').change(function(event) {
 			if ($(this).val() == 'load-ck') {
